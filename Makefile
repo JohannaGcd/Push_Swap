@@ -4,8 +4,8 @@ NAME 			:= push_swap
 
 # ------------ Ingredients ------------ #
 
-SRCS			:= main.c sorting_utils.c stack_init.c errors.c commands.c sort_three.c big_sort.c init_nodes_a.c
-OBJS			:= main.o sorting_utils.o stack_init.o errors.o commands.o sort_three.o big_sort.o init_nodes_a.o
+SRCS			:= main.c sorting_utils.c stack_init.c errors.c commands.c sort_three.c big_sort.c init_nodes_a.c init_nodes_b.c
+OBJS			:= main.o sorting_utils.o stack_init.o errors.o commands.o sort_three.o big_sort.o init_nodes_a.o init_nodes_b.o
 
 LIBS			:= ftprintf
 LIBS_TARGET		:= external_lib/libftprintf.a
@@ -20,7 +20,7 @@ RM				:= rm -f
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBS_TARGET)
-	cc $(CFLAGS) -L $(dir $(LIBS_TARGET)) $(OBJS) -l $(LIBS) -o $(NAME)
+	cc $(CFLAGS) $(OBJS) -L $(dir $(LIBS_TARGET)) -l $(LIBS) -o $(NAME)
 
 %.o:%.c
 	cc $(CFLAGS) -c $< -o $@

@@ -1,9 +1,7 @@
-#include "external_lib/src/libft/libft.h"
 # include "push_swap.h"
-#include <limits.h>
 
 // This functions finds the a target_node in b: it should be the closest smaller number
-void set_target_node(t_list *stack_src, t_list *stack_dest)
+void set_target_a(t_list *stack_src, t_list *stack_dest)
 {
 	t_list	*current_dest;
 	t_list	*target_node;
@@ -105,7 +103,7 @@ void	init_nodes_a(t_list *a, t_list *b)
 {
 	set_index(a);
 	set_index(b);
-	set_target_node(a, b); // should i do one function for both a and b?
+	set_target_a(a, b); 
 	set_push_cost(a, b);
 	set_cheapest(a);
 }

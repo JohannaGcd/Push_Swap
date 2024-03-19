@@ -32,17 +32,19 @@ t_list	*get_cheapest(t_list *stack);
 void	sort_three(t_list **a);
 void	big_sort(t_list **a, t_list **b);
 void	push_a_to_b(t_list **a, t_list **b);
+void	push_b_to_a(t_list **b, t_list **a);
 void	rotate_both(t_list **a, t_list **b, t_list *cheapest_node);
 void	rev_rotate_both(t_list **a, t_list **b, t_list *cheapest_node);
 void    check_for_push(t_list **stack, t_list *top_node, char stack_name);
 
 // Node initialisation 
-void	set_target_node(t_list *stack_src, t_list *stack_dest);
+void	set_target_a(t_list *stack_src, t_list *stack_dest);
+void	set_target_b(t_list *b, t_list *a);
 void	set_push_cost(t_list *a, t_list *b);
 void	set_cheapest(t_list *stack);
 void	set_index(t_list *stack);
 void	init_nodes_a(t_list *a, t_list *b);
-void	init_nodes_a(t_list *a, t_list *b);
+void	init_nodes_b(t_list *b, t_list *a);
 
 // commands
 void	swap(t_list **head);

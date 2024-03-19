@@ -68,6 +68,24 @@ void	push_a_to_b(t_list **a, t_list **b)
 	pb(b, a, true);
 }
 
+void	min_on_top(t_list **stack)
+{
+	t_list	*min_node = find_min_node(*stack);
+	while (*stack != min_node)
+	{
+		if (min_node->above_middle)
+			ra(stack, true);
+		else
+		 	rra(stack, true);
+	}
+	
+}
+void	push_b_to_a(t_list **b, t_list **a)
+{
+	check_for_push(a, (*b)->target_node, 'a');
+	pa(a, b, true);
+}
+
 void	big_sort(t_list **a, t_list **b)
 {
 	int len_a;
@@ -88,6 +106,8 @@ void	big_sort(t_list **a, t_list **b)
 		init_nodes_b(*a, *b);
 		push_b_to_a(b, a);
 	}
+	min_on_top(a);
+	
 
 }
 
