@@ -1,2 +1,9 @@
 # Push_Swap
-Sort data on a stack, with a limited set of instructions, using the lowest possible number of actions.
+TLDR: Sort data on a stack, with a limited set of instructions, using the lowest possible number of actions.
+
+Subject: PDF
+Summary:
+
+Method:
+
+Credits:
