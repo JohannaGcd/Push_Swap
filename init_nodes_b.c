@@ -3,14 +3,14 @@
 void	set_target_b(t_list *dest, t_list *src)
 {
 	t_list	*temp_dest;
-	t_list	*target_node;
+	t_list	*target_node = NULL;
 	long	best_match;
 
 	while (src)
 	{
 		temp_dest = dest;
 		best_match = LONG_MAX;
-		while (dest)
+		while (temp_dest)
 		{
 			if (temp_dest->content > src->content
 				&& temp_dest->content < best_match)
@@ -23,9 +23,9 @@ void	set_target_b(t_list *dest, t_list *src)
 		if (best_match == LONG_MAX)
 			src->target_node = find_min_node(dest);
 		else
-		 	src->target_node = temp_dest;
-	}
+		 	src->target_node = target_node;
 	src = src->next;
+	}
 	
 }
 

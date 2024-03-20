@@ -80,10 +80,10 @@ void	min_on_top(t_list **stack)
 	}
 	
 }
-void	push_b_to_a(t_list **b, t_list **a)
+void	push_b_to_a(t_list **a, t_list **b)
 {
 	check_for_push(a, (*b)->target_node, 'a');
-	pa(a, b, true);
+	pa(b, a, true);
 }
 
 void	big_sort(t_list **a, t_list **b)
@@ -100,14 +100,12 @@ void	big_sort(t_list **a, t_list **b)
 		init_nodes_a(*a, *b);
 		push_a_to_b(a, b);
 	}
-	sort_three(a);	
+	sort_three(a);
 	while (*b)
 	{
 		init_nodes_b(*b, *a);
-		push_b_to_a(b, a);
+		push_b_to_a(a, b);
 	}
 	min_on_top(a);
-	
-
 }
 
