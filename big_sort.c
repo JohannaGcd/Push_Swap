@@ -92,10 +92,10 @@ void	big_sort(t_list **a, t_list **b)
 
 	len_a = ft_lstsize(*a);
 	if (len_a-- > 3 && !stack_sorted(*a))
-		pb(b, a, true);
+		pb(a, b, true);
 	if (len_a-- > 3 && !stack_sorted(*a))
-		pb(b, a, true);
-	while (len_a-- >3 && !stack_sorted(*a))
+		pb(a, b, true);
+	while (len_a-- > 3 && !stack_sorted(*a))
 	{
 		init_nodes_a(*a, *b);
 		push_a_to_b(a, b);
@@ -103,7 +103,7 @@ void	big_sort(t_list **a, t_list **b)
 	sort_three(a);	
 	while (*b)
 	{
-		init_nodes_b(*a, *b);
+		init_nodes_b(*b, *a);
 		push_b_to_a(b, a);
 	}
 	min_on_top(a);

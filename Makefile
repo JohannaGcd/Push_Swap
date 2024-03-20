@@ -12,7 +12,7 @@ LIBS_TARGET		:= external_lib/libftprintf.a
 
 # ------------ Utensils ------------ #
 
-CFLAGS			:= -Wall -Wextra -Werror -g
+CFLAGS			:= -Wall -Wextra -Werror -g -fsanitize=address
 RM				:= rm -f
 
 # ------------ Recipes ------------ #

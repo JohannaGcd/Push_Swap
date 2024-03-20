@@ -1,31 +1,31 @@
 #include "push_swap.h"
 
-void	set_target_b(t_list *b, t_list *a)
+void	set_target_b(t_list *dest, t_list *src)
 {
-	t_list	*temp_a;
+	t_list	*temp_dest;
 	t_list	*target_node;
 	long	best_match;
 
-	while (b)
+	while (src)
 	{
-		temp_a = a;
+		temp_dest = dest;
 		best_match = LONG_MAX;
-		while (a)
+		while (dest)
 		{
-			if (temp_a->content > b->content
-				&& temp_a->content < best_match)
+			if (temp_dest->content > src->content
+				&& temp_dest->content < best_match)
 			{
-				target_node = temp_a;
-				best_match = temp_a->content;
+				target_node = temp_dest;
+				best_match = temp_dest->content;
 			}
-			temp_a = temp_a->next;
+			temp_dest = temp_dest->next;
 		}
 		if (best_match == LONG_MAX)
-			b->target_node = find_min_node(a);
+			src->target_node = find_min_node(dest);
 		else
-		 	b->target_node = temp_a;
+		 	src->target_node = temp_dest;
 	}
-	b = b->next;
+	src = src->next;
 	
 }
 
