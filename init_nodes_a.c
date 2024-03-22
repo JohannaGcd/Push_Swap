@@ -44,13 +44,27 @@ void	set_push_cost(t_list *a, t_list *b) // modify to include if a is above and 
 	len_b = ft_lstsize(b);
 	while (a)
 	{
+		// set initial push_cost for node a based on its index
 		a->push_cost = a->index;
+		// adjust push_cost if a is not above middle
 		if (!(a->above_middle))
 			a->push_cost = len_a - (a->index);
-		if (a->target_node->above_middle)
-			a->push_cost += a->target_node->index;
+		// condition to check if one node is above and the other belowe middle
+		if (a->above_middle != a->target_node->above_middle)
+		{
+			if (a->above_middle)
+				a->push_cost += a->index;
+			else
+				 a->push_cost += len_b - a->index;
+		}
+		// same logic, adjusting push_cost when both nodes are either above or below middle
 		else
-		 	a->push_cost += len_b - (a->target_node->index);
+		{
+			if (a->target_node->above_middle)
+				a->push_cost += a->target_node->index;
+			else
+				a->push_cost += len_b - (a->target_node->index);
+		}
 		a = a->next;
 	}
 }

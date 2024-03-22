@@ -65,7 +65,7 @@ void	push_a_to_b(t_list **a, t_list **b)
 			rev_rotate_both(a, b, cheapest_node);
 	check_for_push(a, cheapest_node, 'a');
 	check_for_push(b, cheapest_node->target_node, 'b');
-	pb(b, a, true);
+	pb(a, b, true);
 }
 
 void	min_on_top(t_list **stack)
@@ -80,7 +80,7 @@ void	min_on_top(t_list **stack)
 	}
 	
 }
-void	push_b_to_a(t_list **a, t_list **b)
+void	push_b_to_a(t_list **b, t_list **a)
 {
 	check_for_push(a, (*b)->target_node, 'a');
 	pa(b, a, true);
@@ -104,7 +104,7 @@ void	big_sort(t_list **a, t_list **b)
 	while (*b)
 	{
 		init_nodes_b(*b, *a);
-		push_b_to_a(a, b);
+		push_b_to_a(b, a);
 	}
 	min_on_top(a);
 }
