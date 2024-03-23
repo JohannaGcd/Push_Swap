@@ -38,6 +38,10 @@ int main(int argc, char **argv)
 			print_all(&stack_a);
 
 		}
+		else if (ft_lstsize(stack_a) == 4)
+			sort_four(&stack_a, &stack_b);
+		else if (ft_lstsize(stack_a) == 5)
+			sort_five(&stack_a, &stack_b);
 		else
 		{
 			printf("before: \n");

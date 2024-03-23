@@ -22,3 +22,18 @@ void sort_three(t_list **a)
 	if ((*a)->content > (*a)->next->content) // once bottom node is the biggest, check is top node is bigger than second
 		sa(a, true); // if so, complete the sorting by swapping the top and second nodes
 }
+
+void	sort_four(t_list **a, t_list **b)
+{
+	min_on_top(a);
+	pb(a, b, true);
+	sort_three(a);
+	pa(a, b, true);
+}
+
+void	sort_five(t_list **a, t_list **b)
+{
+	min_on_top(a);
+	pb(a, b, true);
+	sort_four(a, b);
+}

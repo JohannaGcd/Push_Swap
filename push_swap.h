@@ -27,10 +27,13 @@ t_list	*find_last_node(t_list *stack);
 t_list	*find_max_node(t_list *stack);
 t_list	*find_min_node(t_list *stack);
 t_list	*get_cheapest(t_list *stack);
+void	min_on_top(t_list **stack);
 
 // sorting functions
 void	sort_three(t_list **a);
 void	big_sort(t_list **a, t_list **b);
+void	sort_four(t_list **a, t_list **b);
+void	sort_five(t_list **a, t_list **b);
 void	push_a_to_b(t_list **a, t_list **b);
 void	push_b_to_a(t_list **b, t_list **a);
 void	rotate_both(t_list **a, t_list **b, t_list *cheapest_node);
