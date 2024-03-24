@@ -1,3 +1,4 @@
+#include "external_lib/src/ft_printf/ft_printf.h"
 #include "external_lib/src/libft/libft.h"
 #include "push_swap.h"
 
@@ -50,6 +51,10 @@ int main(int argc, char **argv)
 			printf("after: \n");
 			print_all(&stack_a);
 		}
+	if (stack_sorted(stack_a))
+		ft_printf("It works!");
+	else
+	 	ft_printf("It didn't. Good luck!");
 	}
 
 	if (argc == 2)

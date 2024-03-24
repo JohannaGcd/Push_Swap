@@ -91,21 +91,22 @@ void	big_sort(t_list **a, t_list **b)
 	int len_a;
 
 	len_a = ft_lstsize(*a);
-	if (len_a-- > 5 && !stack_sorted(*a))
+	if (len_a-- > 3 && !stack_sorted(*a))
 		pb(a, b, true);
-	if (len_a-- > 5 && !stack_sorted(*a))
+	if (len_a-- > 3 && !stack_sorted(*a))
 		pb(a, b, true);
-	while (len_a-- > 5 && !stack_sorted(*a))
+	while (len_a-- > 3 && !stack_sorted(*a))
 	{
 		init_nodes_a(*a, *b);
 		push_a_to_b(a, b);
 	}
-	sort_five(a, b);
+	sort_three(a);
 	while (*b)
 	{
 		init_nodes_b(*b, *a);
 		push_b_to_a(b, a);
 	}
+	set_index(*a);
 	min_on_top(a);
 }
 

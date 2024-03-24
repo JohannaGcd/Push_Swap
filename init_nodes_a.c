@@ -30,7 +30,7 @@ void set_target_a(t_list *stack_src, t_list *stack_dest)
 }
 
 // Determines a nodes' push cost relative to its own and it's target node's position in the stacks:
-// a push_cost is initially set to its index value 
+// a push_cost is initially get to its index value 
 // if a is below the middle, it is stack's length minus the index (essentially how far is it from the top)
 // if its target node is above median, add the index of the target node. 
 // if it is below the median, add the length of stack b minus the index of the target node in b

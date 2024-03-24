@@ -35,5 +35,9 @@ void	sort_five(t_list **a, t_list **b)
 {
 	min_on_top(a);
 	pb(a, b, true);
-	sort_four(a, b);
+	min_on_top(a);
+	pb(a, b, true);
+	sort_three(a);
+	pa(a, b, true);
+	pa(a, b, true);
 }
