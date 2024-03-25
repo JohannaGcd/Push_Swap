@@ -23,38 +23,15 @@ int main(int argc, char **argv)
 	if (!stack_sorted(stack_a))
 	{	
 		if (ft_lstsize(stack_a) == 2)
-		{
-			printf("before: \n");
-			print_all(&stack_a);
 			sa(&stack_a, true);
-			printf("after: \n");
-			print_all(&stack_a);
-		}
 		else if (ft_lstsize(stack_a) == 3)
-		{
-			printf("before: \n");
-			print_all(&stack_a);
 			sort_three(&stack_a);
-			printf("before: \n");
-			print_all(&stack_a);
-
-		}
 		else if (ft_lstsize(stack_a) == 4)
 			sort_four(&stack_a, &stack_b);
 		else if (ft_lstsize(stack_a) == 5)
 			sort_five(&stack_a, &stack_b);
 		else
-		{
-			printf("before: \n");
-			print_all(&stack_a);
 			big_sort(&stack_a, &stack_b);	
-			printf("after: \n");
-			print_all(&stack_a);
-		}
-	if (stack_sorted(stack_a))
-		ft_printf("It works!");
-	else
-	 	ft_printf("It didn't. Good luck!");
 	}
 
 	if (argc == 2)

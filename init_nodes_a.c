@@ -25,6 +25,7 @@ void set_target_a(t_list *stack_src, t_list *stack_dest)
 			stack_src->target_node = find_max_node(stack_dest);
 		else
 		 	stack_src->target_node = target_node;
+		// printf("node: %i, target %i\n", stack_src->content, stack_src->target_node->content);
 		stack_src = stack_src->next;
 	}
 }
@@ -44,9 +45,10 @@ void	set_push_cost(t_list *a, t_list *b) // modify to include if a is above and 
 	len_b = ft_lstsize(b);
 	while (a)
 	{
-		a->push_cost = a->index;
-		if (!(a->above_middle))
-			a->push_cost += len_a - (a->index);
+		if (a->above_middle)
+			a->push_cost = a->index;
+		else
+			a->push_cost = len_a - (a->index); // +?
 		if (a->target_node->above_middle)
 			a->push_cost += a->target_node->index;
 		else

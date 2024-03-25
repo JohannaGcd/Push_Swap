@@ -34,7 +34,8 @@ void    check_for_push(t_list **stack, t_list *top_node, char stack_name)
 }
 void	rev_rotate_both(t_list **a, t_list **b, t_list *cheapest_node)
 {
-	while (*b != cheapest_node->target_node && *a != cheapest_node)
+	while (*b != cheapest_node->target_node 
+		&& *a != cheapest_node)
 		rrr(a, b , true);
 	set_index(*a);
 	set_index(*b);
@@ -43,7 +44,8 @@ void	rev_rotate_both(t_list **a, t_list **b, t_list *cheapest_node)
 // Pushes the cheapest node to be pushed and its target node to the top of the stack 
 void	rotate_both(t_list **a, t_list **b, t_list *cheapest_node)
 {
-	while (*b != cheapest_node->target_node && *a != cheapest_node)
+	while (*b != cheapest_node->target_node 
+		&& *a != cheapest_node)
 		rr(a, b, true);
 	set_index(*a);
 	set_index(*b);
@@ -65,13 +67,15 @@ void	push_a_to_b(t_list **a, t_list **b)
 			rev_rotate_both(a, b, cheapest_node);
 	check_for_push(a, cheapest_node, 'a');
 	check_for_push(b, cheapest_node->target_node, 'b');
+	// TODO: create a case where b is below above_middle
+	// create a check for push going to the bottom?
 	pb(a, b, true);
 }
 
 void	min_on_top(t_list **stack)
 {
 	t_list	*min_node = find_min_node(*stack);
-	while (*stack != min_node)
+	while ((*stack)->content != min_node->content)
 	{
 		if (min_node->above_middle)
 			ra(stack, true);
@@ -91,11 +95,10 @@ void	big_sort(t_list **a, t_list **b)
 	int len_a;
 
 	len_a = ft_lstsize(*a);
-	if (len_a-- > 3 && !stack_sorted(*a))
-		pb(a, b, true);
-	if (len_a-- > 3 && !stack_sorted(*a))
-		pb(a, b, true);
-	while (len_a-- > 3 && !stack_sorted(*a))
+	pb(a, b, true);
+	pb(a, b, true);
+	len_a -= 2;
+	while (len_a-- > 3)
 	{
 		init_nodes_a(*a, *b);
 		push_a_to_b(a, b);
