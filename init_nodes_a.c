@@ -9,20 +9,20 @@ void set_target_a(t_list *stack_src, t_list *stack_dest)
 
 	while (stack_src)
 	{
-		best_match_index = LONG_MAX;
+		best_match_index = LONG_MIN;
 		current_dest = stack_dest;
 		while (current_dest)
 		{
-			if (current_dest->content > stack_src->content 
-				&& current_dest->content < best_match_index)
+			if (current_dest->content < stack_src->content 
+				&& current_dest->content > best_match_index)
 			{
 				best_match_index = current_dest->content;
 				target_node = current_dest;
 			}
 			current_dest = current_dest->next;
 		}
-		if (best_match_index == LONG_MAX)
-			stack_src->target_node = find_min_node(stack_dest);
+		if (best_match_index == LONG_MIN)
+			stack_src->target_node = find_max_node(stack_dest);
 		else
 		 	stack_src->target_node = target_node;
 		stack_src = stack_src->next;

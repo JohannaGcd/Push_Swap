@@ -71,7 +71,3 @@ int main(int argc, char **argv)
 	ft_lstclear(&stack_b); // clear only stack_a?
 	return (0);
 }
-
-//TO DO
-// 3. code commands
-// do stack sorted in main
