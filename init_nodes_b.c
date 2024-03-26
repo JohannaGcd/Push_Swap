@@ -34,6 +34,6 @@ void	init_nodes_b(t_list *b, t_list *a)
 	set_index(b);
 	set_index(a);
 	set_target_b(a, b);
-	set_push_cost(b, a);
-	set_cheapest(b);
+	//set_push_cost(b, a);
+	//set_cheapest(b);
 }

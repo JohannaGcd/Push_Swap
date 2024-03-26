@@ -20,21 +20,21 @@ void    check_for_push(t_list **stack, t_list *top_node, char stack_name)
 			if (top_node->above_middle)
 				ra(stack, true);
 			else
-			 	rra(stack, true);
+				rra(stack, true);
 		}
 		else if (stack_name == 'b')
 		{
 			if (top_node->above_middle)
 				rb(stack, true);
 			else
-			 	rrb(stack, true);
+				rrb(stack, true);
 		}
 	}
 		
 }
 void	rev_rotate_both(t_list **a, t_list **b, t_list *cheapest_node)
 {
-	while (*b != cheapest_node->target_node 
+	while (*b != cheapest_node->target_node
 		&& *a != cheapest_node)
 		rrr(a, b , true);
 	set_index(*a);
@@ -44,14 +44,38 @@ void	rev_rotate_both(t_list **a, t_list **b, t_list *cheapest_node)
 // Pushes the cheapest node to be pushed and its target node to the top of the stack 
 void	rotate_both(t_list **a, t_list **b, t_list *cheapest_node)
 {
-	while (*b != cheapest_node->target_node 
+	while (*b != cheapest_node->target_node
 		&& *a != cheapest_node)
 		rr(a, b, true);
 	set_index(*a);
 	set_index(*b);
 }
 
-// Pushes a to be, by first pushing the cheapest node & its target  to the top of the stack  
+void	rotate_a_and_rev_b(t_list **a, t_list **b, t_list *cheapest_node)
+{
+	while (*b != cheapest_node->target_node
+		&& *a != cheapest_node)
+	{
+		ra(a, true);
+		rrb(b, true);
+	}
+	set_index(*a);
+	set_index(*b);
+}
+
+void	rotate_b_and_rev_a(t_list **a, t_list **b, t_list *cheapest_node)
+{
+	while (*b != cheapest_node->target_node
+		&& *a != cheapest_node)
+	{
+		rb(b, true);
+		rra(a, true);
+	}
+	set_index(*a);
+	set_index(*b);
+}
+
+// Pushes a to b, by first pushing the cheapest node & its target  to the top of the stack  
 // double_checking that both nodes are on top
 // and then pushing.
 void	push_a_to_b(t_list **a, t_list **b)
@@ -65,10 +89,14 @@ void	push_a_to_b(t_list **a, t_list **b)
 	else if (!(cheapest_node->above_middle)
 			&& !(cheapest_node->target_node->above_middle))
 			rev_rotate_both(a, b, cheapest_node);
+	else if ((cheapest_node->above_middle)
+			&& !(cheapest_node->target_node->above_middle))
+			rotate_a_and_rev_b(a, b, cheapest_node);
+	else if (!(cheapest_node->above_middle)
+			&& (cheapest_node->target_node->above_middle))
+			rotate_b_and_rev_a(a, b, cheapest_node);
 	check_for_push(a, cheapest_node, 'a');
 	check_for_push(b, cheapest_node->target_node, 'b');
-	// TODO: create a case where b is below above_middle
-	// create a check for push going to the bottom?
 	pb(a, b, true);
 }
 
@@ -80,7 +108,7 @@ void	min_on_top(t_list **stack)
 		if (min_node->above_middle)
 			ra(stack, true);
 		else
-		 	rra(stack, true);
+			rra(stack, true);
 	}
 	
 }

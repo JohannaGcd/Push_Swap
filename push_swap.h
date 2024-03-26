@@ -38,6 +38,8 @@ void	push_a_to_b(t_list **a, t_list **b);
 void	push_b_to_a(t_list **b, t_list **a);
 void	rotate_both(t_list **a, t_list **b, t_list *cheapest_node);
 void	rev_rotate_both(t_list **a, t_list **b, t_list *cheapest_node);
+void	rotate_a_and_rev_b(t_list **a, t_list **b, t_list *cheapest_node);
+void	rotate_b_and_rev_a(t_list **a, t_list **b, t_list *cheapest_node);
 void    check_for_push(t_list **stack, t_list *top_node, char stack_name);
 
 // Node initialisation 

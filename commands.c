@@ -123,7 +123,7 @@ void	rrr(t_list **a, t_list **b, bool print)
 	reverse_rotate(a);
 	reverse_rotate(b);
 	if (print)
-		ft_printf("rrb\n");
+		ft_printf("rrr\n");
 }
 
 void	print_all(t_list **stack)

@@ -48,7 +48,7 @@ void	set_push_cost(t_list *a, t_list *b) // modify to include if a is above and 
 		if (a->above_middle)
 			a->push_cost = a->index;
 		else
-			a->push_cost = len_a - (a->index); // +?
+			a->push_cost = len_a - (a->index);
 		if (a->target_node->above_middle)
 			a->push_cost += a->target_node->index;
 		else
@@ -64,9 +64,12 @@ void	set_cheapest(t_list *stack)
 	long	cheapest_value;
 	t_list	*cheapest_node;
 
+	if (!stack)
+		return ;
 	cheapest_value = LONG_MAX;
 	while (stack)
 	{
+		stack->cheapest = false;
 		if (stack->push_cost < cheapest_value)
 		{
 			cheapest_value = stack->push_cost;
