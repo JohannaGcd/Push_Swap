@@ -1,4 +1,5 @@
 #include "push_swap.h"
+#include <unistd.h>
 
 int main(int argc, char **argv)
 {
@@ -10,8 +11,9 @@ int main(int argc, char **argv)
 
 	if ((argc == 1) || (argc == 2 && !argv[1][0]))
 	{
-		free_errors(&stack_a);
-		free_errors(&stack_b);
+		write(STDERR_FILENO, "Error\n", 6);
+		//free_errors(&stack_a);
+		//free_errors(&stack_b);
 		return (1);
 
 	}
