@@ -11,12 +11,21 @@ void	stack_init(t_list **a, char **argv)
 	while (argv[i] != NULL)
 	{
 		if (error_syntax(argv[i]))
+		{
 			free_errors(a);
+			exit (1);
+		}
 		n = ft_atol(argv[i]); // use ft_atol to avoid overflow while checking for MAX/MIN values.
 		if (n > INT_MAX || n < INT_MIN)
+		{
 			free_errors(a);
+			exit (1);
+		}
 		if (error_duplicate(*a, (int)n)) // cast to an int to convert the value obtained fromt ft_atol
+		{
 			free_errors(a);
+			exit (1);
+		}
 		append_node(a, (int)n);
 		i++;
 	}

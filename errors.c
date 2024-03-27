@@ -38,6 +38,7 @@ void	free_errors(t_list **a)
 {
 	// this function goes through the stack, frees each node & sets the head to NULL and exits the program.
 	ft_lstclear(a);
-	ft_printf("Error\n");
-	exit (1);
+	write(2, "Error\n", 6);
+	//exit(1);
+	//ft_printf("Error\n");
 }
