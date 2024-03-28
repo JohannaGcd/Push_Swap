@@ -67,11 +67,11 @@ void				ft_putnbr_fd(int n, int fd);
 typedef struct s_list
 {
 	int				content; // the number to sort
-	int				index; // the number's posiiton in the stack
+	int				index; // the number's positon in the stack
 	int				push_cost; // how many commands in total
 	bool			above_middle; // used to calculate the push_cost
 	bool			cheapest; // the node that is cheapest to move
-	struct s_list	*target_node; // the target node of a node in the opposite stack
+	struct s_list	*target_node; // the target node in the opposite stack
 	struct s_list	*next; // pointer to the next node
 }					t_list;
 

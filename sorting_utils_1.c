@@ -1,19 +1,5 @@
 #include "push_swap.h"
 
-// Returns false if a value is bigger than the following one.
-bool	stack_sorted(t_list *stack)
-{
-	if (!stack)
-		return (NULL);
-	while (stack->next)
-	{
-		if (stack->content > stack->next->content)
-			return (false);
-		stack = stack->next;
-	}
-	return (true);
-}
-
 // Returns the length of the stack
 int	length_stack(t_list *stack)
 {

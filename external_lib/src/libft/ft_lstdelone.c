@@ -16,7 +16,6 @@ void	ft_lstdelone(t_list *lst)
 {
 	if (lst == NULL)
 		return ;
-	//free(lst->content);
 	free (lst);
 }
 

@@ -12,7 +12,7 @@
 * 	proceed with sorting (depending on the number of arguments)
 * if input was a string, don't forget to free.
 * free both stacks at the end.
-* **/ 
+* **/
 
 int	main(int argc, char **argv)
 {

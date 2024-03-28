@@ -22,7 +22,6 @@ void	ft_lstclear(t_list **lst)
 		return ;
 	while (current != NULL)
 	{
-		//free(current->content);
 		next = current->next;
 		free(current);
 		current = next;

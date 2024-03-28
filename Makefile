@@ -4,8 +4,10 @@ NAME 			:= push_swap
 
 # ------------ Ingredients ------------ #
 
-SRCS			:= main.c sorting_utils.c stack_init.c errors.c commands.c small_sorts.c big_sort.c init_nodes_a.c init_nodes_b.c
-OBJS			:= main.o sorting_utils.o stack_init.o errors.o commands.o small_sorts.o big_sort.o init_nodes_a.o init_nodes_b.o
+SRCS			:= main.c sorting_utils_1.c sorting_utils_2.c stack_init.c errors.c reverse_rotate.c \
+				   push.c rotate.c swap.c small_sorts.c big_sort.c init_nodes_a.c init_nodes_b.c
+OBJS			:= main.o sorting_utils_1.o sorting_utils_2.o stack_init.o errors.o reverse_rotate.o \
+				   push.o rotate.o swap.o small_sorts.o big_sort.o init_nodes_a.o init_nodes_b.o
 
 LIBS			:= ftprintf
 LIBS_TARGET		:= external_lib/libftprintf.a

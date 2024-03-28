@@ -21,48 +21,6 @@ void	check_for_push(t_list **stack, t_list *top_node, char stack_name)
 	}
 }
 
-void	rev_rotate_both(t_list **a, t_list **b, t_list *cheapest_node)
-{
-	while (*b != cheapest_node->target_node
-		&& *a != cheapest_node)
-		rrr(a, b, true);
-	set_index(*a);
-	set_index(*b);
-}
-
-void	rotate_both(t_list **a, t_list **b, t_list *cheapest_node)
-{
-	while (*b != cheapest_node->target_node
-		&& *a != cheapest_node)
-		rr(a, b, true);
-	set_index(*a);
-	set_index(*b);
-}
-
-void	rotate_a_and_rev_b(t_list **a, t_list **b, t_list *cheapest_node)
-{
-	while (*b != cheapest_node->target_node
-		&& *a != cheapest_node)
-	{
-		ra(a, true);
-		rrb(b, true);
-	}
-	set_index(*a);
-	set_index(*b);
-}
-
-void	rotate_b_and_rev_a(t_list **a, t_list **b, t_list *cheapest_node)
-{
-	while (*b != cheapest_node->target_node
-		&& *a != cheapest_node)
-	{
-		rb(b, true);
-		rra(a, true);
-	}
-	set_index(*a);
-	set_index(*b);
-}
-
 /*** METHOD **
 * find the cheapest_node 
 * check its relative position to the target node 
@@ -92,20 +50,6 @@ void	push_a_to_b(t_list **a, t_list **b)
 	check_for_push(a, cheapest_node, 'a');
 	check_for_push(b, cheapest_node->target_node, 'b');
 	pb(a, b, true);
-}
-
-void	min_on_top(t_list **stack)
-{
-	t_list	*min_node;
-
-	min_node = find_min_node(*stack);
-	while ((*stack)->content != min_node->content)
-	{
-		if (min_node->above_middle)
-			ra(stack, true);
-		else
-			rra(stack, true);
-	}
 }
 
 void	push_b_to_a(t_list **b, t_list **a)
