@@ -1,17 +1,6 @@
 #include "push_swap.h"
 
-/* METHOD
-*	Push 2 nodes from a to b 
-*	Then send a nodes to b while sorting them in descending order (target node should be the closest smallest node value).
-*		Special case: if min value, then target node should be smallest value.
-*	Once there are only 3 nodes left in a, sort them
-*	Then send b nodes to a while sorting them in ascending order (target node should be the closest biggest)
-*	Check that the minimum is on top, if not rotate.
-*/
-
-//This function checks whether the top node is indeed on top of the stack. 
-//If not, it moves the node on top.
-void    check_for_push(t_list **stack, t_list *top_node, char stack_name)
+void	check_for_push(t_list **stack, t_list *top_node, char stack_name)
 {
 	while (*stack != top_node)
 	{
@@ -30,18 +19,17 @@ void    check_for_push(t_list **stack, t_list *top_node, char stack_name)
 				rrb(stack, true);
 		}
 	}
-		
 }
+
 void	rev_rotate_both(t_list **a, t_list **b, t_list *cheapest_node)
 {
 	while (*b != cheapest_node->target_node
 		&& *a != cheapest_node)
-		rrr(a, b , true);
+		rrr(a, b, true);
 	set_index(*a);
 	set_index(*b);
 }
 
-// Pushes the cheapest node to be pushed and its target node to the top of the stack 
 void	rotate_both(t_list **a, t_list **b, t_list *cheapest_node)
 {
 	while (*b != cheapest_node->target_node
@@ -75,9 +63,15 @@ void	rotate_b_and_rev_a(t_list **a, t_list **b, t_list *cheapest_node)
 	set_index(*b);
 }
 
-// Pushes a to b, by first pushing the cheapest node & its target  to the top of the stack  
-// double_checking that both nodes are on top
-// and then pushing.
+/*** METHOD **
+* find the cheapest_node 
+* check its relative position to the target node 
+* depending on whether above or below middle, execute a particular command
+* the command will stop once one of the two nodes is a the top of the stack
+* so we use check_for_push to perform the last operations 
+* 	to bring both nodes at the top, if necessary
+* finally, push cheapest node to stack b
+*/
 void	push_a_to_b(t_list **a, t_list **b)
 {
 	t_list	*cheapest_node;
@@ -87,14 +81,14 @@ void	push_a_to_b(t_list **a, t_list **b)
 		&& cheapest_node->target_node->above_middle)
 		rotate_both(a, b, cheapest_node);
 	else if (!(cheapest_node->above_middle)
-			&& !(cheapest_node->target_node->above_middle))
-			rev_rotate_both(a, b, cheapest_node);
+		&& !(cheapest_node->target_node->above_middle))
+		rev_rotate_both(a, b, cheapest_node);
 	else if ((cheapest_node->above_middle)
-			&& !(cheapest_node->target_node->above_middle))
-			rotate_a_and_rev_b(a, b, cheapest_node);
+		&& !(cheapest_node->target_node->above_middle))
+		rotate_a_and_rev_b(a, b, cheapest_node);
 	else if (!(cheapest_node->above_middle)
-			&& (cheapest_node->target_node->above_middle))
-			rotate_b_and_rev_a(a, b, cheapest_node);
+		&& (cheapest_node->target_node->above_middle))
+		rotate_b_and_rev_a(a, b, cheapest_node);
 	check_for_push(a, cheapest_node, 'a');
 	check_for_push(b, cheapest_node->target_node, 'b');
 	pb(a, b, true);
@@ -102,7 +96,9 @@ void	push_a_to_b(t_list **a, t_list **b)
 
 void	min_on_top(t_list **stack)
 {
-	t_list	*min_node = find_min_node(*stack);
+	t_list	*min_node;
+
+	min_node = find_min_node(*stack);
 	while ((*stack)->content != min_node->content)
 	{
 		if (min_node->above_middle)
@@ -110,17 +106,29 @@ void	min_on_top(t_list **stack)
 		else
 			rra(stack, true);
 	}
-	
 }
+
 void	push_b_to_a(t_list **b, t_list **a)
 {
 	check_for_push(a, (*b)->target_node, 'a');
 	pa(b, a, true);
 }
 
+/*** METHOD ***
+* Push the two first nodes from a to b 
+* while the stack length is over 3, push nodes from a to b 
+* 	while sorting them in descending order
+* 	init_nodes_a initializes the nodes (index, target node, push cost)
+* 	push a to b prepares the cheapest node found to be pushed to b
+* then sort 3 nodes
+* Perform the same from b to a, except now the nodes are already sorted
+* 	we send them in ascending order this time
+* 	Finally, ensure that the minimum node is on top.
+***/
+
 void	big_sort(t_list **a, t_list **b)
 {
-	int len_a;
+	int	len_a;
 
 	len_a = ft_lstsize(*a);
 	pb(a, b, true);
@@ -140,4 +148,3 @@ void	big_sort(t_list **a, t_list **b)
 	set_index(*a);
 	min_on_top(a);
 }
-

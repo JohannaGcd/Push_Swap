@@ -1,5 +1,18 @@
 #include "push_swap.h"
-#include <unistd.h>
+
+/***METHOD***
+* initialize two stacks and an index
+* check if number of arguments is 1 (only program name)
+* 	or 2 (but empty string), return 0
+* if argc is 2, then input is a string. 
+* 	send it to ft_split before initializing the stack.
+* otherwise, send argv+1 (ignore program name) to stack_init, 
+* 	stack_init contains the checkers for input erros
+* if the stack is not already sorted, 
+* 	proceed with sorting (depending on the number of arguments)
+* if input was a string, don't forget to free.
+* free both stacks at the end.
+* **/ 
 
 int	main(int argc, char **argv)
 {
@@ -10,12 +23,7 @@ int	main(int argc, char **argv)
 	stack_a = NULL;
 	stack_b = NULL;
 	if ((argc == 1) || (argc == 2 && !argv[1][0]))
-	{
-		// write(STDERR_FILENO, "Error\n", 6);
-		// free_errors(&stack_a);
-		// free_errors(&stack_b);
 		return (0);
-	}
 	else if (argc == 2)
 	{
 		argv = ft_split(argv[1], ' ');
@@ -47,6 +55,6 @@ int	main(int argc, char **argv)
 		free(argv);
 	}
 	ft_lstclear(&stack_a);
-	ft_lstclear(&stack_b); // clear only stack_a?
+	ft_lstclear(&stack_b);
 	return (0);
 }
