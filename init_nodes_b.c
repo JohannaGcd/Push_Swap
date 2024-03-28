@@ -1,11 +1,21 @@
 #include "push_swap.h"
 
+/** METHOD **
+* To push nodes from b to a, the method is the same,
+* except less steps are needed:
+* as the nodes are already sorted, there is no need to
+* set push_cost and set cheapest.
+* In fact, we're always sending the top node.
+* Resulting in the final sort of a, in ascending order.
+*/
+
 void	set_target_b(t_list *dest, t_list *src)
 {
 	t_list	*temp_dest;
-	t_list	*target_node = NULL;
+	t_list	*target_node;
 	long	best_match;
 
+	target_node = NULL;
 	while (src)
 	{
 		temp_dest = dest;
@@ -23,10 +33,9 @@ void	set_target_b(t_list *dest, t_list *src)
 		if (best_match == LONG_MAX)
 			src->target_node = find_min_node(dest);
 		else
-		 	src->target_node = target_node;
-	src = src->next;
+			src->target_node = target_node;
+		src = src->next;
 	}
-	
 }
 
 void	init_nodes_b(t_list *b, t_list *a)
@@ -34,6 +43,4 @@ void	init_nodes_b(t_list *b, t_list *a)
 	set_index(b);
 	set_index(a);
 	set_target_b(a, b);
-	//set_push_cost(b, a);
-	//set_cheapest(b);
 }

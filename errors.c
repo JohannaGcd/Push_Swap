@@ -1,30 +1,33 @@
 #include "push_swap.h"
 
-int error_syntax(char *s)
+/*** METHOD ***
+* error_syntax checks for syntax errors (not a sign or digit) 
+* error_duplicate checks for duplicates
+* free_errors frees each node in the stack
+* 	then sets head to NULL and exits the program
+*/
+
+int	error_syntax(char *s)
 {
-	int i;
+	int	i;
+
 	i = 0;
-	// if not '+' or '-' or number, return error (1).
 	if (!(s[i] == '+' || s[i] == '-' || (s[i] >= '0' && s[i] <= '9')))
 		return (1);
-	// if '+' or '-' but next character is not a number, return error (1).
 	if ((s[i] == '+' || s[i] == '-') && (!(s[i + 1] >= '0' && s[i + 1] <= '9')))
- 		return (1);
-  	// check the rest of the string, return error if not a digit.
+		return (1);
 	while (s[++i])
-  	{
+	{
 		if (!(s[i] >= '0' && s[i] <= '9'))
-  			return (1);
+			return (1);
 	}
 	return (0);
 }
 
 int	error_duplicate(t_list *a, int n)
 {
-	// check for empty stack
 	if (!a)
 		return (0);
-	// go through stack a, if n is encountered, return error (1);
 	while (a)
 	{
 		if (a->content == n)
@@ -36,9 +39,6 @@ int	error_duplicate(t_list *a, int n)
 
 void	free_errors(t_list **a)
 {
-	// this function goes through the stack, frees each node & sets the head to NULL and exits the program.
 	ft_lstclear(a);
 	write(2, "Error\n", 6);
-	//exit(1);
-	//ft_printf("Error\n");
 }

@@ -1,12 +1,10 @@
-#include "external_lib/src/libft/libft.h"
 #include "push_swap.h"
-#include <limits.h>
 
+// Returns false if a value is bigger than the following one.
 bool	stack_sorted(t_list *stack)
 {
 	if (!stack)
 		return (NULL);
-	// goes through the stack and returns false if a value is bigger than the following one.
 	while (stack->next)
 	{
 		if (stack->content > stack->next->content)
@@ -16,49 +14,49 @@ bool	stack_sorted(t_list *stack)
 	return (true);
 }
 
-// Function which returns the length of the stack
-int		length_stack(t_list *stack)
+// Returns the length of the stack
+int	length_stack(t_list *stack)
 {
+	t_list	*temp;
+	int		len;
+
 	if (!stack)
 		return (0);
-	t_list *temp;
-	int len = 0;	
-
 	temp = stack;
-	while (temp != NULL) // counts untill the stack becomes NULL.
+	len = 0;
+	while (temp != NULL)
 	{
-		temp = temp->next;	
+		temp = temp->next;
 		len++;
 	}
 	return (len);
 }
 
-// Function which finds & returns last node 
+// Returns the last node
 t_list	*find_last_node(t_list *stack)
 {
+	t_list	*temp;
+
 	if (!stack)
 		return (NULL);
-	
-	t_list	*temp;
 	temp = stack;
-	while (temp->next != NULL) // finds the last node in the stack (the one which points to NULL).
+	while (temp->next != NULL)
 		temp = temp->next;
 	return (temp);
 }
 
-// Function which finds & returns the node with the maximum number.
+// Returns the node with the maximum number
 t_list	*find_max_node(t_list *stack)
 {
-	if (!stack)
-		return (NULL);
-
 	long	max;
 	t_list	*max_node;
 	t_list	*temp;
-	
+
+	if (!stack)
+		return (NULL);
 	temp = stack;
 	max_node = stack;
-	max = LONG_MIN; 
+	max = LONG_MIN;
 	while (temp)
 	{
 		if (temp->content > max)
@@ -71,16 +69,15 @@ t_list	*find_max_node(t_list *stack)
 	return (max_node);
 }
 
-// Function which finds & returns the node with the minimum number.
+// Returns the node with the minimum number
 t_list	*find_min_node(t_list *stack)
 {
-	if (!stack)
-		return (NULL);
-	
 	t_list	*temp;
 	t_list	*min_node;
 	long	min;
 
+	if (!stack)
+		return (NULL);
 	temp = stack;
 	min = LONG_MAX;
 	while (temp)

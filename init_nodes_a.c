@@ -1,7 +1,10 @@
-# include "push_swap.h"
+#include "push_swap.h"
 
-// This functions finds the a target_node in b: it should be the closest smaller number
-void set_target_a(t_list *stack_src, t_list *stack_dest)
+// This function finds the a target_node in b:
+// it should be the closest smaller number
+// to sort in ascending order.
+// if min value, target_node should be max.
+void	set_target_a(t_list *stack_src, t_list *stack_dest)
 {
 	t_list	*current_dest;
 	t_list	*target_node;
@@ -13,7 +16,7 @@ void set_target_a(t_list *stack_src, t_list *stack_dest)
 		current_dest = stack_dest;
 		while (current_dest)
 		{
-			if (current_dest->content < stack_src->content 
+			if (current_dest->content < stack_src->content
 				&& current_dest->content > best_match_index)
 			{
 				best_match_index = current_dest->content;
@@ -24,22 +27,17 @@ void set_target_a(t_list *stack_src, t_list *stack_dest)
 		if (best_match_index == LONG_MIN)
 			stack_src->target_node = find_max_node(stack_dest);
 		else
-		 	stack_src->target_node = target_node;
-		// printf("node: %i, target %i\n", stack_src->content, stack_src->target_node->content);
+			stack_src->target_node = target_node;
 		stack_src = stack_src->next;
 	}
 }
 
-// Determines a nodes' push cost relative to its own and it's target node's position in the stacks:
-// a push_cost is initially get to its index value 
-// if a is below the middle, it is stack's length minus the index (essentially how far is it from the top)
-// if its target node is above median, add the index of the target node. 
-// if it is below the median, add the length of stack b minus the index of the target node in b
- 
-void	set_push_cost(t_list *a, t_list *b) // modify to include if a is above and b below
+// Determines a node's push cost
+// relative to its own & it's target node's position
+void	set_push_cost(t_list *a, t_list *b)
 {
-	int len_a;
-	int len_b;
+	int	len_a;
+	int	len_b;
 
 	len_a = ft_lstsize(a);
 	len_b = ft_lstsize(b);
@@ -58,7 +56,7 @@ void	set_push_cost(t_list *a, t_list *b) // modify to include if a is above and 
 }
 
 // Determines the cheapest node to push.
-// Methode: iterates through the push_costs of each 
+// Methode: iterates through the push_costs of each
 void	set_cheapest(t_list *stack)
 {
 	long	cheapest_value;
@@ -80,14 +78,14 @@ void	set_cheapest(t_list *stack)
 	cheapest_node->cheapest = true;
 }
 
-
-// This function sets the index value (position in the stack) 
-// and determines if the node is below or above the middle of the stack (this helps to calculate the push cost)
+// This function sets the index value (position in the stack)
+// and determines if the node is below or above the middle of the stack
+// (this helps to calculate the push cost)
 void	set_index(t_list *stack)
 {
 	int	i;
 	int	middle;
-	
+
 	i = 0;
 	if (!stack)
 		return ;
@@ -103,12 +101,14 @@ void	set_index(t_list *stack)
 		i++;
 	}
 }
-// This function initializes all the nodes with index number, target node, push_cost and then sets boolean value cheapest.
+
+// This function initializes all the nodes with the relevant information:
+// (index, above/below middle, target, push_cost & sets boolean for cheapest.
 void	init_nodes_a(t_list *a, t_list *b)
 {
 	set_index(a);
 	set_index(b);
-	set_target_a(a, b); 
+	set_target_a(a, b);
 	set_push_cost(a, b);
 	set_cheapest(a);
 }

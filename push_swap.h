@@ -5,11 +5,6 @@
 # include <limits.h>
 # include "external_lib/src/ft_printf/ft_printf.h"
 
-/*typedef struct	t_list {
-	int	value;
-	struct t_list *next;
-}				t_list;*/
-
 // errors.c
 int		error_syntax(char *s);
 int		error_duplicate(t_list *a, int n);
@@ -40,7 +35,7 @@ void	rotate_both(t_list **a, t_list **b, t_list *cheapest_node);
 void	rev_rotate_both(t_list **a, t_list **b, t_list *cheapest_node);
 void	rotate_a_and_rev_b(t_list **a, t_list **b, t_list *cheapest_node);
 void	rotate_b_and_rev_a(t_list **a, t_list **b, t_list *cheapest_node);
-void    check_for_push(t_list **stack, t_list *top_node, char stack_name);
+void	check_for_push(t_list **stack, t_list *top_node, char stack_name);
 
 // Node initialisation 
 void	set_target_a(t_list *stack_src, t_list *stack_dest);
