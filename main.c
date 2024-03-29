@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jguacide <jguacide@student.codam.nl>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/29 09:58:20 by jguacide          #+#    #+#             */
+/*   Updated: 2024/03/29 11:14:43 by jguacide         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-/***METHOD***
+/*** METHOD ***
 * initialize two stacks and an index
 * check if number of arguments is 1 (only program name)
 * 	or 2 (but empty string), return 0
@@ -12,13 +24,12 @@
 * 	proceed with sorting (depending on the number of arguments)
 * if input was a string, don't forget to free.
 * free both stacks at the end.
-* **/
+***/
 
 int	main(int argc, char **argv)
 {
 	t_list	*stack_a;
 	t_list	*stack_b;
-	int		i;
 
 	stack_a = NULL;
 	stack_b = NULL;
@@ -37,24 +48,9 @@ int	main(int argc, char **argv)
 			sa(&stack_a, true);
 		else if (ft_lstsize(stack_a) == 3)
 			sort_three(&stack_a);
-		else if (ft_lstsize(stack_a) == 4)
-			sort_four(&stack_a, &stack_b);
-		else if (ft_lstsize(stack_a) == 5)
-			sort_five(&stack_a, &stack_b);
 		else
 			big_sort(&stack_a, &stack_b);
 	}
-	if (argc == 2)
-	{
-		i = 0;
-		while (argv[i])
-		{
-			free(argv[i]);
-			i++;
-		}
-		free(argv);
-	}
 	ft_lstclear(&stack_a);
-	ft_lstclear(&stack_b);
 	return (0);
 }

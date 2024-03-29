@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_init.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jguacide <jguacide@student.codam.nl>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/29 09:59:14 by jguacide          #+#    #+#             */
+/*   Updated: 2024/03/29 10:02:33 by jguacide         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 /*** METHOD *** 
@@ -18,21 +30,12 @@ void	stack_init(t_list **a, char **argv)
 	while (argv[i] != NULL)
 	{
 		if (error_syntax(argv[i]))
-		{
 			free_errors(a);
-			exit (1);
-		}
 		n = ft_atol(argv[i]);
 		if (n > INT_MAX || n < INT_MIN)
-		{
 			free_errors(a);
-			exit (1);
-		}
 		if (error_duplicate(*a, (int)n))
-		{
 			free_errors(a);
-			exit (1);
-		}
 		append_node(a, (int)n);
 		i++;
 	}
