@@ -1,7 +1,44 @@
 #include "push_swap.h"
+#include <stdbool.h>
+#include <unistd.h>
+
+
+
+void	parse_commands(t_list **stack_a, t_list **stack_b, char *command)
+{
+	if (ft_strcmp(command, "sa\n") == 0)
+		sa(stack_a, stack_b, true);
+	else if (ft_strcmp(command, "sb\n") == 0)
+		sb(stack_a, stack_b, true);
+	else if (ft_strcmp(command, "ss\n") == 0)
+		ss(stack_a, stack_b, true);
+	else if (ft_strcmp(command, "pa\n") == 0)
+		pa(stack_a, stack_b, true);
+	else if (ft_strcmp(command, "pb\n") == 0)
+		pb(stack_a, stack_b, true);
+	else if (ft_strcmp(command, "ra\n") == 0)
+		ra(stack_a, stack_b, true);
+	else if (ft_strcmp(command, "rb\n") == 0)
+		rb(stack_a, stack_b, true);
+	else if (ft_strcmp(command, "rr\n") == 0)
+		rr(stack_a, stack_b, true);
+	else if (ft_strcmp(command, "rra\n") == 0)
+		rra(stack_a, stack_b, true);
+	else if (ft_strcmp(command, "rrb\n") == 0)
+		rrb(stack_a, stack_b, true);
+	else if (ft_strcmp(command, "rrr\n") == 0)
+		rrr(stack_a, stack_b, true);
+	else
+	{
+		free_errors(stack_a);
+		free_errors(stack_b);
+	}
+}
 
 int	main(int argc, char **argv)
 {
+	int		len;
+	char	*next_line
 	t_list	*stack_a;
 	t_list	*stack_b;
 
@@ -17,22 +54,20 @@ int	main(int argc, char **argv)
 	}
 	else
 		stack_init(&stack_a, argv + 1);
-
-	// HOW TO WAIT FOR INSTRUCTIONS TO PRINT?
-	
-	// get_next_line (stdin)
-	// if X != all commands, display error, free and exit 
-	// then execute. while (*X) if X == ra execute ra 
-	if (!stack_sorted(stack_a) // or stack_b is not empty
+	len = ft_lstsize(stack_a);
+	next_line = get_next_line(STDIN_FILENO);
+	while (next_line)
+	{
+		parse_commands(&stack_a, &stack_b, next_line);
+		next_line = get_next_line(STDIN_FILENO);
+	}
+	if (!stack_sorted(stack_a) || stack_len(stack_a) != len)
 		write(1, "KO\n", 3);
 	else
 	 	write(1, "OK\n", 3);
 	ft_lstclear(&stack_a);
 	return (0);
 }
-
-}
-
 
 // TASK:
 // Create a checker that takes as an argument the stack a, formatted as a list of integers 

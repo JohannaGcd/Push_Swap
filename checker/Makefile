@@ -1,16 +1,13 @@
 
 # ------------ Makefile ------------ #
 
-NAME 			:= bonus
+NAME 			:= checker
 
 
 # ------------ Ingredients ------------ #
 
-SRCS			:= main.c sorting_utils_1.c sorting_utils_2.c stack_init.c errors.c reverse_rotate.c \
-OBJS			:= 
-
-LIBS			:= ftprintf
-LIBS_TARGET		:= external_lib/libftprintf.a
+SRCS			:= 
+OBJS			:= $(SRCS:.c=.o)
 
 # ------------ Utensils ------------ #
 
@@ -21,22 +18,21 @@ RM				:= rm -f
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBS_TARGET)
-	cc $(CFLAGS) $(OBJS) -L $(dir $(LIBS_TARGET)) -l $(LIBS) -o $(NAME)
+$(NAME): $(OBJS) $(PUSH_SWAP)
+	cc $(CFLAGS) $^ -o $(NAME)
 
 %.o:%.c
 	cc $(CFLAGS) -c $< -o $@
 
-$(LIBS_TARGET):
-	$(MAKE) -C $(dir $(LIBS_TARGET))
+$(PUSH_SWAP): 
+	cd ../push_swap && make
 
 clean:
-	$(MAKE) clean -C $(dir $(LIBS_TARGET))
 	$(RM) $(OBJS)
 
 fclean: clean
-	$(MAKE) fclean -C $(dir $(LIBS_TARGET))
 	$(RM) $(NAME)
+	cd ../push_swap && make fclean 
 
 re:
 	$(MAKE) fclean

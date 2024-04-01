@@ -7,9 +7,11 @@ NAME = libftprintf.a
 SRC_DIR 	:= src
 DIR_LIBFT	:= libft
 DIR_PRINTF	:= ft_printf
+DIR_GNL		:= get_next_line
 
 SRCS_PRINTF	:= ft_printf.c ft_printf.h print_address.c print_char.c \
 			   print_digit_bighex.c print_digit.c print_digit_unsigned.c print_string.c
+SRCS_GNL	:= get_next_line.c get_next_line_utils.c
 SRCS_LIBFT	:= ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
 			   ft_isdigit.c ft_isprint.c ft_itoa.c \
 			   ft_memchr.c ft_memcmp.c ft_memcpy.c ft_memmove.c ft_memset.c ft_putchar_fd.c \
@@ -22,10 +24,12 @@ SRCS_LIBFT	:= ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isas
 
 SRCS_LIBFT		:= $(SRCS_LIBFT:%=$(SRC_DIR)/$(DIR_LIBFT)/%)
 SRCS_PRINTF		:= $(SRCS_PRINTF:%=$(SRC_DIR)/$(DIR_PRINTF)/%)
+SRCS_GNL		:= $(SRCS_GNL:%=$(SRC_DIR)/$(DIR_GNL)/%)
 
 BUILD_DIR		:= .build
 OBJ_LIBFT		:= $(SRCS_LIBFT:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 OBJ_PRINTF		:= $(SRCS_PRINTF:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
+OBJ_GNL			:= $(SRCS_GNL:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 
 ######## UTENSILS ########
 
@@ -39,8 +43,8 @@ DIR_PUP			= mkdir -p $(@D)
 
 all: $(NAME)
 
-$(NAME): $(OBJ_LIBFT) $(OBJ_PRINTF)
-	ar -rcs $(NAME) $(OBJ_LIBFT) $(OBJ_PRINTF)
+$(NAME): $(OBJ_LIBFT) $(OBJ_PRINTF) $(OBJ_GNL)
+	ar -rcs $(NAME) $(OBJ_LIBFT) $(OBJ_PRINTF) $(OBJ_GNL)
 	$(info created $(NAME))
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c

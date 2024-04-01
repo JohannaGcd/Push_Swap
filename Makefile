@@ -30,6 +30,9 @@ $(NAME): $(OBJS) $(LIBS_TARGET)
 $(LIBS_TARGET):
 	$(MAKE) -C $(dir $(LIBS_TARGET))
 
+bonus:
+	cd ../checker && make
+
 clean:
 	$(MAKE) clean -C $(dir $(LIBS_TARGET))
 	$(RM) $(OBJS)
@@ -37,6 +40,7 @@ clean:
 fclean: clean
 	$(MAKE) fclean -C $(dir $(LIBS_TARGET))
 	$(RM) $(NAME)
+	cd ../checer && make fclean
 
 re:
 	$(MAKE) fclean
