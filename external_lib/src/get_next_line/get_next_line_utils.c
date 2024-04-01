@@ -6,7 +6,7 @@
 /*   By: jguacide <jguacide@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 10:39:37 by jguacide          #+#    #+#             */
-/*   Updated: 2024/04/01 09:30:54 by jguacide         ###   ########.fr       */
+/*   Updated: 2024/04/01 14:02:21 by jguacide         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_free(char **s)
 	return (NULL);
 }
 
-char	*ft_strdup(char const *s)
+/*char	*ft_strdup(char const *s)
 {
 	size_t	len;
 	size_t	i;
@@ -70,7 +70,7 @@ char	*ft_strchr(char const *s, int c)
 	if (copy_c == '\0')
 		return ((char *)&s[i]);
 	return (NULL);
-}
+}*/
 
 char	*ft_strjoin_gnl(char *s1, char *s2)
 {

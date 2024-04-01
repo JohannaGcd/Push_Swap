@@ -6,7 +6,7 @@
 /*   By: jguacide <jguacide@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 11:48:53 by jguacide          #+#    #+#             */
-/*   Updated: 2023/10/25 10:49:50 by jguacide         ###   ########.fr       */
+/*   Updated: 2024/04/01 13:58:24 by jguacide         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,10 @@ char	*ft_strdup(const char *s)
 	s_copy = malloc(len + 1);
 	if (!s_copy)
 		return (NULL);
-	else
+	while (s[i])
 	{
-		while (s[i])
-		{
-			s_copy[i] = s[i];
-			i++;
-		}
+		s_copy[i] = s[i];
+		i++;
 	}
 	s_copy[i] = '\0';
 	return (s_copy);

@@ -1,6 +1,6 @@
 # ---------*---------- Makefile ----------*----------
 
-NAME = libftprintf.a
+NAME = libftprintfgnl.a
 
 ####### INGREDIENTS ########
 

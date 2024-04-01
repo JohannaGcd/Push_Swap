@@ -6,7 +6,7 @@
 /*   By: jguacide <jguacide@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 08:59:54 by jguacide          #+#    #+#             */
-/*   Updated: 2024/04/01 09:30:40 by jguacide         ###   ########.fr       */
+/*   Updated: 2024/04/01 14:03:22 by jguacide         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ char	*ft_free(char **s);
 char	*read_from_file(int fd, char *my_static_buffer);
 char	*save_line(char *myStaticBuffer);
 char	*save_nextline(char *myStaticBuffer);
-char	*ft_strdup(char const *s);
-char	*ft_strchr(char const *s, int c);
+//char	*ft_strdup(char const *s);
+//char	*ft_strchr(char const *s, int c);
 char	*ft_strjoin_gnl(char *s1, char *s2);
-size_t	ft_strlen(char const *s);
 char	*get_next_line(int fd);
+//size_t	ft_strlen(char const *s);
 
 #endif 

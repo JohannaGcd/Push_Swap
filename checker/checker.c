@@ -1,44 +1,56 @@
-#include "push_swap.h"
-#include <stdbool.h>
-#include <unistd.h>
+#include "checker.h"
 
+int		ft_strcmp(char *s1, char *s2)
+{
+	while (*s1 == *s2 && *s1)
+	{
+		s1++;
+		s2++;
+	}
+	return (s1 - s2);
+}
 
+void	errors(t_list **stack_a, t_list **stack_b)
+{
+	ft_lstclear(stack_a);
+	ft_lstclear(stack_b);
+	write(2, "Error\n", 6);
+	exit(1);
+	
+}
 
 void	parse_commands(t_list **stack_a, t_list **stack_b, char *command)
 {
 	if (ft_strcmp(command, "sa\n") == 0)
-		sa(stack_a, stack_b, true);
+		sa(stack_a, true);
 	else if (ft_strcmp(command, "sb\n") == 0)
-		sb(stack_a, stack_b, true);
+		sb(stack_b, true);
 	else if (ft_strcmp(command, "ss\n") == 0)
 		ss(stack_a, stack_b, true);
 	else if (ft_strcmp(command, "pa\n") == 0)
-		pa(stack_a, stack_b, true);
+		pa(stack_b, stack_a, true);
 	else if (ft_strcmp(command, "pb\n") == 0)
 		pb(stack_a, stack_b, true);
 	else if (ft_strcmp(command, "ra\n") == 0)
-		ra(stack_a, stack_b, true);
+		ra(stack_a, true);
 	else if (ft_strcmp(command, "rb\n") == 0)
-		rb(stack_a, stack_b, true);
+		rb(stack_b, true);
 	else if (ft_strcmp(command, "rr\n") == 0)
 		rr(stack_a, stack_b, true);
 	else if (ft_strcmp(command, "rra\n") == 0)
-		rra(stack_a, stack_b, true);
+		rra(stack_a, true);
 	else if (ft_strcmp(command, "rrb\n") == 0)
-		rrb(stack_a, stack_b, true);
+		rrb(stack_b, true);
 	else if (ft_strcmp(command, "rrr\n") == 0)
 		rrr(stack_a, stack_b, true);
 	else
-	{
-		free_errors(stack_a);
-		free_errors(stack_b);
-	}
+		errors(stack_a, stack_b);
 }
 
 int	main(int argc, char **argv)
 {
 	int		len;
-	char	*next_line
+	char	*next_line;
 	t_list	*stack_a;
 	t_list	*stack_b;
 
@@ -61,7 +73,7 @@ int	main(int argc, char **argv)
 		parse_commands(&stack_a, &stack_b, next_line);
 		next_line = get_next_line(STDIN_FILENO);
 	}
-	if (!stack_sorted(stack_a) || stack_len(stack_a) != len)
+	if (!stack_sorted(stack_a) || ft_lstsize(stack_a) != len)
 		write(1, "KO\n", 3);
 	else
 	 	write(1, "OK\n", 3);

@@ -19,6 +19,8 @@ char	*ft_strchr(const char *s, int c)
 
 	copy_c = (char)c;
 	i = 0;
+	if (!s)
+		return (NULL);
 	while (s[i])
 	{
 		if (s[i] == copy_c)
