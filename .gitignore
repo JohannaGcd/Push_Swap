@@ -3,3 +3,5 @@ checker_linux/
 checker_linux
 res.txt
 visualizer/
+
+*.o

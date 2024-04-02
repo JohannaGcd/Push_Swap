@@ -6,7 +6,7 @@
 /*   By: jguacide <jguacide@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 09:58:33 by jguacide          #+#    #+#             */
-/*   Updated: 2024/03/29 10:00:05 by jguacide         ###   ########.fr       */
+/*   Updated: 2024/04/02 17:56:29 by jguacide         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdbool.h>
 # include <limits.h>
+# include "external_lib/src/libft/libft.h"
 # include "external_lib/src/ft_printf/ft_printf.h"
 
 // errors.c
