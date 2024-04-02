@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jguacide <jguacide@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 09:58:20 by jguacide          #+#    #+#             */
-/*   Updated: 2024/03/29 11:14:43 by jguacide         ###   ########.fr       */
+/*   Updated: 2024/04/02 18:15:30 by jguacide         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "external_lib/src/libft/libft.h"
 
 /*** METHOD ***
 * initialize two stacks and an index
@@ -26,6 +27,22 @@
 * free both stacks at the end.
 ***/
 
+char *ft_free_split(char **s)
+{
+	int i;
+
+	i = 0;
+	if (s == NULL)
+		return (NULL);
+	while (s[i])
+	{
+		free(s[i]);
+		i++;
+	}
+	free(s);
+	return (NULL);
+}
+
 int	main(int argc, char **argv)
 {
 	t_list	*stack_a;
@@ -38,7 +55,10 @@ int	main(int argc, char **argv)
 	else if (argc == 2)
 	{
 		argv = ft_split(argv[1], ' ');
+		if (argv == NULL)
+			return (ft_putstr_fd("ERROR\n", 2), 1);
 		stack_init(&stack_a, argv);
+		ft_free_split(argv);
 	}
 	else
 		stack_init(&stack_a, argv + 1);
