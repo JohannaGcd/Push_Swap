@@ -68,9 +68,10 @@ int	main(int argc, char **argv)
 		stack_init(&stack_a, argv + 1);
 	len = ft_lstsize(stack_a);
 	next_line = get_next_line(STDIN_FILENO);
-	while (next_line)
+	while (next_line != NULL)
 	{
 		parse_commands(&stack_a, &stack_b, next_line);
+		ft_free(&next_line);
 		next_line = get_next_line(STDIN_FILENO);
 	}
 	if (!stack_sorted(stack_a) || ft_lstsize(stack_a) != len)

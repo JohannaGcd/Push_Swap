@@ -6,7 +6,7 @@
 /*   By: jguacide <jguacide@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 08:46:57 by jguacide          #+#    #+#             */
-/*   Updated: 2024/04/01 12:45:48 by jguacide         ###   ########.fr       */
+/*   Updated: 2024/04/02 11:29:38 by jguacide         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <stdbool.h>
 # include <unistd.h>
 
+#define BUFFER_SIZE 10
+
 /*typedef struct b_list
 {
 	char			str_buf;
@@ -28,5 +30,7 @@
 int		ft_strcmp(char *s1, char *s2);
 void	errors(t_list **stack_a, t_list **stack_b);
 void	parse_commands(t_list **stack_a, t_list **stack_b, char *command);
+void	*ft_free(char **s);
+char	*get_next_line(int fd);
 
 #endif
