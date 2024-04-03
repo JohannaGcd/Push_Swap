@@ -7,7 +7,7 @@ int		ft_strcmp(char *s1, char *s2)
 		s1++;
 		s2++;
 	}
-	return (s1 - s2);
+	return (*s1 - *s2);
 }
 
 void	errors(t_list **stack_a, t_list **stack_b)
@@ -22,27 +22,27 @@ void	errors(t_list **stack_a, t_list **stack_b)
 void	parse_commands(t_list **stack_a, t_list **stack_b, char *command)
 {
 	if (ft_strcmp(command, "sa\n") == 0)
-		sa(stack_a, true);
+		sa(stack_a, false);
 	else if (ft_strcmp(command, "sb\n") == 0)
-		sb(stack_b, true);
+		sb(stack_b, false);
 	else if (ft_strcmp(command, "ss\n") == 0)
-		ss(stack_a, stack_b, true);
+		ss(stack_a, stack_b, false);
 	else if (ft_strcmp(command, "pa\n") == 0)
-		pa(stack_b, stack_a, true);
+		pa(stack_b, stack_a, false);
 	else if (ft_strcmp(command, "pb\n") == 0)
-		pb(stack_a, stack_b, true);
+		pb(stack_a, stack_b, false);
 	else if (ft_strcmp(command, "ra\n") == 0)
-		ra(stack_a, true);
+		ra(stack_a, false);
 	else if (ft_strcmp(command, "rb\n") == 0)
-		rb(stack_b, true);
+		rb(stack_b, false);
 	else if (ft_strcmp(command, "rr\n") == 0)
-		rr(stack_a, stack_b, true);
+		rr(stack_a, stack_b, false);
 	else if (ft_strcmp(command, "rra\n") == 0)
-		rra(stack_a, true);
+		rra(stack_a, false);
 	else if (ft_strcmp(command, "rrb\n") == 0)
-		rrb(stack_b, true);
+		rrb(stack_b, false);
 	else if (ft_strcmp(command, "rrr\n") == 0)
-		rrr(stack_a, stack_b, true);
+		rrr(stack_a, stack_b, false);
 	else
 		errors(stack_a, stack_b);
 }
@@ -68,10 +68,10 @@ int	main(int argc, char **argv)
 		stack_init(&stack_a, argv + 1);
 	len = ft_lstsize(stack_a);
 	next_line = get_next_line(STDIN_FILENO);
-	while (next_line != NULL)
+	while (next_line)
 	{
 		parse_commands(&stack_a, &stack_b, next_line);
-		ft_free(&next_line);
+		free(next_line);
 		next_line = get_next_line(STDIN_FILENO);
 	}
 	if (!stack_sorted(stack_a) || ft_lstsize(stack_a) != len)

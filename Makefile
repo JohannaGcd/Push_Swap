@@ -18,7 +18,7 @@ LIBS_TARGET		:= external_lib/libftprintfgnl.a
 
 # ------------ Utensils ------------ #
 
-CFLAGS			:= -Wall -Wextra -Werror -g# -fsanitize=address
+CFLAGS			:= -Wall -Wextra -Werror -g -fsanitize=address
 RM				:= rm -f
 
 # ------------ Recipes ------------ #
