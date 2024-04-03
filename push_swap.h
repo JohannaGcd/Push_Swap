@@ -6,7 +6,7 @@
 /*   By: jguacide <jguacide@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 09:58:33 by jguacide          #+#    #+#             */
-/*   Updated: 2024/04/02 18:18:45 by jguacide         ###   ########.fr       */
+/*   Updated: 2024/04/03 13:22:35 by jguacide         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	min_on_top(t_list **stack);
 void	print_all(t_list **stack);
 
 // sorting functions (big_sort.c & sort_three.c)
+void	check_sort(t_list **stack_a, t_list **stack_b);
 void	check_for_push(t_list **stack, t_list *top_node, char stack_name);
 void	push_a_to_b(t_list **a, t_list **b);
 void	push_b_to_a(t_list **b, t_list **a);

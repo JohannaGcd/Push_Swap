@@ -9,7 +9,7 @@ SRCS			:= push_swap.c sorting_utils_1.c sorting_utils_2.c stack_init.c errors.c 
 				   push.c rotate.c swap.c small_sorts.c big_sort.c init_nodes_a.c init_nodes_b.c
 OBJS			:= $(SRCS:.c=.o)
 
-B_SRC			:= bonus/checker.c sorting_utils_1.c sorting_utils_2.c stack_init.c errors.c reverse_rotate.c \
+B_SRC			:= bonus/checker.c bonus/checker_utils.c sorting_utils_1.c sorting_utils_2.c stack_init.c errors.c reverse_rotate.c \
 				   push.c rotate.c swap.c small_sorts.c big_sort.c init_nodes_a.c init_nodes_b.c
 B_OBJ			:= $(B_SRC:.c=.o)
 
@@ -18,7 +18,7 @@ LIBS_TARGET		:= external_lib/libftprintfgnl.a
 
 # ------------ Utensils ------------ #
 
-CFLAGS			:= -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS			:= -Wall -Wextra -Werror -g #-fsanitize=address
 RM				:= rm -f
 
 # ------------ Recipes ------------ #

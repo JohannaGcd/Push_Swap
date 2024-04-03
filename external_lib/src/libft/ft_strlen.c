@@ -6,7 +6,7 @@
 /*   By: jguacide <jguacide@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 11:34:40 by jguacide          #+#    #+#             */
-/*   Updated: 2024/04/01 13:59:44 by jguacide         ###   ########.fr       */
+/*   Updated: 2024/04/03 13:13:15 by jguacide         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 size_t	ft_strlen(const char *s)
 {
 	int	i;
-	
+
 	if (!s)
 		return (0);
 	i = 0;

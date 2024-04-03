@@ -1,72 +1,60 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checker.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jguacide <jguacide@student.codam.nl>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/03 13:13:36 by jguacide          #+#    #+#             */
+/*   Updated: 2024/04/03 16:13:03 by jguacide         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "checker.h"
 
-int		ft_strcmp(char *s1, char *s2)
+char	**check_input(int argc, char *argv[], t_list **stack_a)
 {
-	while (*s1 == *s2 && *s1)
+	if (argc == 2)
 	{
-		s1++;
-		s2++;
+		argv = ft_split(argv[1], ' ');
+		{
+			if (argv == NULL)
+				return (NULL);
+		}
+		stack_init(stack_a, argv);
 	}
-	return (*s1 - *s2);
-}
-
-void	errors(t_list **stack_a, t_list **stack_b)
-{
-	ft_lstclear(stack_a);
-	ft_lstclear(stack_b);
-	write(2, "Error\n", 6);
-	exit(1);
-	
-}
-
-void	parse_commands(t_list **stack_a, t_list **stack_b, char *command)
-{
-	if (ft_strcmp(command, "sa\n") == 0)
-		sa(stack_a, false);
-	else if (ft_strcmp(command, "sb\n") == 0)
-		sb(stack_b, false);
-	else if (ft_strcmp(command, "ss\n") == 0)
-		ss(stack_a, stack_b, false);
-	else if (ft_strcmp(command, "pa\n") == 0)
-		pa(stack_b, stack_a, false);
-	else if (ft_strcmp(command, "pb\n") == 0)
-		pb(stack_a, stack_b, false);
-	else if (ft_strcmp(command, "ra\n") == 0)
-		ra(stack_a, false);
-	else if (ft_strcmp(command, "rb\n") == 0)
-		rb(stack_b, false);
-	else if (ft_strcmp(command, "rr\n") == 0)
-		rr(stack_a, stack_b, false);
-	else if (ft_strcmp(command, "rra\n") == 0)
-		rra(stack_a, false);
-	else if (ft_strcmp(command, "rrb\n") == 0)
-		rrb(stack_b, false);
-	else if (ft_strcmp(command, "rrr\n") == 0)
-		rrr(stack_a, stack_b, false);
 	else
-		errors(stack_a, stack_b);
+		stack_init(stack_a, argv + 1);
+	return (argv);
+}
+
+void	check_sort_bonus(t_list **stack_a, int len_a)
+{
+	if (!stack_sorted(*stack_a) || ft_lstsize(*stack_a) != len_a)
+		write(1, "KO\n", 3);
+	else
+		write(1, "OK\n", 3);
 }
 
 int	main(int argc, char **argv)
 {
-	int		len;
 	char	*next_line;
 	t_list	*stack_a;
 	t_list	*stack_b;
+	int		len_a;
 
 	stack_a = NULL;
 	stack_b = NULL;
-
+	len_a = 0;
 	if ((argc == 1) || (argc == 2 && !argv[1][0]))
 		return (0);
-	else if (argc == 2)
-	{
-		argv = ft_split(argv[1], ' ');
-		stack_init(&stack_a, argv);
-	}
 	else
-		stack_init(&stack_a, argv + 1);
-	len = ft_lstsize(stack_a);
+	{
+		argv = check_input(argc, argv, &stack_a);
+		if (argv == NULL)
+			return (ft_putstr_fd("ERROR\n", 2), 1);
+	}
+	len_a = ft_lstsize(stack_a);
 	next_line = get_next_line(STDIN_FILENO);
 	while (next_line)
 	{
@@ -74,38 +62,9 @@ int	main(int argc, char **argv)
 		free(next_line);
 		next_line = get_next_line(STDIN_FILENO);
 	}
-	if (!stack_sorted(stack_a) || ft_lstsize(stack_a) != len)
-		write(1, "KO\n", 3);
-	else
-	 	write(1, "OK\n", 3);
+	check_sort_bonus(&stack_a, len_a);
+	ft_free_argv(argv);
 	ft_lstclear(&stack_a);
+	ft_lstclear(&stack_b);
 	return (0);
 }
-
-// TASK:
-// Create a checker that takes as an argument the stack a, formatted as a list of integers 
-// if no argument, it stops and displays nothing
-// Then it waits and reads te instructions on the standard input. Each instruction will be followed by \n 
-// Once all the instructions have been read, the program execytes them on the stck received as an argyment.
-// if after executing those instructions, the stack is sorted and b is empty, the program must display OK followd by \n 
-// Otherwise, KO\n
-// In case of error, display "Error\n"on the standard error. 
-// 	Example of errors: some arguments are not integers, bigger than integers, duplicates, an instruction doesn't exist or is not formatted correctly.
-
-// PSEUDO CODE MAIN.c: 
-// initiate stack a and b. 
-// Check if stdin is empty. if yes, exit. 
-// stack a is initialized with a list of integers read from stdin.
-// while initialized, check for wrong input. Free and display Error if it is the case.
-// Once initialized, wait for the instructions to print.
-// then read from stdin ALL the instructions (and check for error. if error, display error free and exit), THEN execute the commands there.
-// once all commands are executed, check if list is sorted. 
-// if yes, display OK\n
-// if not, display KO\n
-// free stack a and b 
-
-// PSEUDO CODE MAKEFILE
-// I need get next line 
-// Modify my push_swap Makefile so that it compiles with rule bonus
-// rule bonus should compile my bonus_main along with the helper libraries
-// Modify my push_swap Makefile so that target fclean reaches bonus as well.

@@ -6,7 +6,7 @@
 /*   By: jguacide <jguacide@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 09:58:20 by jguacide          #+#    #+#             */
-/*   Updated: 2024/04/02 18:15:30 by jguacide         ###   ########.fr       */
+/*   Updated: 2024/04/03 13:32:54 by jguacide         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,22 @@
 * free both stacks at the end.
 ***/
 
-char *ft_free_split(char **s)
+void	check_sort(t_list **stack_a, t_list **stack_b)
 {
-	int i;
+	if (!stack_sorted(*stack_a))
+	{
+		if (ft_lstsize(*stack_a) == 2)
+			sa(stack_a, true);
+		else if (ft_lstsize(*stack_a) == 3)
+			sort_three(stack_a);
+		else
+			big_sort(stack_a, stack_b);
+	}
+}
+
+char	*ft_free_split(char **s)
+{
+	int	i;
 
 	i = 0;
 	if (s == NULL)
@@ -62,15 +75,7 @@ int	main(int argc, char **argv)
 	}
 	else
 		stack_init(&stack_a, argv + 1);
-	if (!stack_sorted(stack_a))
-	{
-		if (ft_lstsize(stack_a) == 2)
-			sa(&stack_a, true);
-		else if (ft_lstsize(stack_a) == 3)
-			sort_three(&stack_a);
-		else
-			big_sort(&stack_a, &stack_b);
-	}
+	check_sort(&stack_a, &stack_b);
 	ft_lstclear(&stack_a);
 	return (0);
 }

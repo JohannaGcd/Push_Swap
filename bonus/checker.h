@@ -6,7 +6,7 @@
 /*   By: jguacide <jguacide@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 08:46:57 by jguacide          #+#    #+#             */
-/*   Updated: 2024/04/02 17:21:19 by jguacide         ###   ########.fr       */
+/*   Updated: 2024/04/03 16:07:45 by jguacide         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,11 @@
 # include <stdbool.h>
 # include <unistd.h>
 
-/*typedef struct b_list
-{
-	char			str_buf;
-	struct s_list	*next;
-}					c_list;*/
-
-
 int		ft_strcmp(char *s1, char *s2);
 void	errors(t_list **stack_a, t_list **stack_b);
 void	parse_commands(t_list **stack_a, t_list **stack_b, char *command);
+void	check_sort_bonus(t_list **stack_a, int len_a);
+char	**check_input(int argc, char *argv[], t_list **stack_a);
+void	ft_free_argv(char **argv);
 
 #endif
