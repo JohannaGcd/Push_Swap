@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jguacide <jguacide@student.codam.nl>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/03 13:13:36 by jguacide          #+#    #+#             */
-/*   Updated: 2024/04/04 14:23:22 by jguacide         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   checker.c                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: jguacide <jguacide@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/04/03 13:13:36 by jguacide      #+#    #+#                 */
+/*   Updated: 2024/04/04 15:02:06 by jguacide      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
-#include <unistd.h>
 
 void	parse_input(t_list **stack_a, t_list **stack_b, char *next_line)
 {
